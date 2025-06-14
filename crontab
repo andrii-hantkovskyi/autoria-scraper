@@ -1,0 +1,1 @@
+* * * * * /usr/local/bin/python /app/main.py >> /var/log/auto_ria/test.log 2>&1

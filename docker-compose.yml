@@ -1,0 +1,24 @@
+services:
+  scraper:
+    build: .
+    container_name: auto_ria_scraper
+    volumes:
+      - ./app:/app
+      - ./logs:/var/log/auto_ria
+      - ./dumps:/dumps
+    restart: unless-stopped
+    depends_on:
+      - db
+    env_file: .env
+
+  db:
+    image: postgres:latest
+    container_name: auto_ria_db
+    restart: unless-stopped
+    env_file: .env
+    volumes:
+      - db_data:/var/lib/postgresql/data
+      - ./db_init:/docker-entrypoint-initdb.d
+
+volumes:
+  db_data:
