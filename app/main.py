@@ -19,7 +19,7 @@ logger = logging.getLogger(__name__)
 
 async def fetch_first_page_and_return_html_with_pages_count(browser: Browser):
     """
-    Fetch the first page of the car listings and return the total number of pages.
+    Fetch the first page of the car listings and return the HTML content along with the total number of pages.
     """
     page = await browser.new_page()
 
@@ -40,7 +40,7 @@ async def fetch_first_page_and_return_html_with_pages_count(browser: Browser):
 
 def get_cars_urls(html):
     """
-    Extract car URLs from the HTML content of the first page.
+    Extract car URLs from the HTML content of the given page.
     """
     soup = bs4.BeautifulSoup(html, "lxml")
     car_sections = soup.select("section.ticket-item")
@@ -86,7 +86,7 @@ async def fetch_with_retry(session, url, retries=3, delay=2, response_type="text
                     logger.error(f"Failed to fetch {url}: {response.status}")
         except Exception as e:
             logger.error(f"Error fetching {url}: {e}")
-        await asyncio.sleep(delay + randint(2, 4))  # Random delay to avoid rate limiting
+        await asyncio.sleep(delay + randint(2, 4))
     return None
 
 

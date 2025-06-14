@@ -13,5 +13,5 @@ RESULTS_PER_PAGE = 10
 BASE_URL = "https://auto.ria.com/uk/search/?lang_id=4&indexName=auto&custom=1&abroad=2"
 PHONE_NUMBER_API_URL = "https://auto.ria.com/users/phones/{car_id}?hash={hash}&expires={expires}"
 
-DATABASE_URL = "postgresql://auto_ria_user:auto_ria_password@db:5432/auto_ria_db"
+DATABASE_URL = env.str("DATABASE_URL", "postgresql://user:password@localhost:5432/auto_ria")
 DATABASE_DUMPS_PATH = os.path.join(BASE_DIR, "..", "dumps")
