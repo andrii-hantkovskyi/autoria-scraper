@@ -61,6 +61,8 @@ This will:
 - Initialize schema from `init.sql`
 - Start cron which executes scraper until container is stopped
 
+---
+
 ## 🕒 Scheduling via Cron
 
 Two presets:
@@ -120,6 +122,19 @@ CREATE TABLE IF NOT EXISTS cars (
 - The scraper uses `Playwright` to simulate clicks on “Show phone” and extract data from scripts.
 - Rate limits are respected via randomized `sleep()` and retry logic.
 - You must use the correct version of `pg_dump` matching PostgreSQL server. Optionally add `postgres-client` to the scraper Dockerfile.
+
+---
+
+## 🔧 Ways to Improve
+
+- **Implement batching (DB & requests):**  
+  Insert data in batches instead of per-record, and send multiple requests in parallel for higher throughput and lower DB overhead.
+- **Retry with exponential backoff:**  
+  Use smarter retry logic for requests and API calls, especially on rate-limits or temporary failures.
+- **Async connection pool:**  
+  Consider using a connection pool for aiohttp to further improve efficiency.
+- **Proxy and user-agent rotation:**  
+  Reduce risk of blocking or bans by rotating proxies and user-agents for each session/request.
 
 ---
 
