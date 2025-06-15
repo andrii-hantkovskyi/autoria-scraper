@@ -9,7 +9,7 @@ env.read_env()
 logging.basicConfig(level=logging.INFO)
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-RESULTS_PER_PAGE = 10
+RESULTS_PER_PAGE = 50
 BASE_URL = "https://auto.ria.com/uk/search/?lang_id=4&indexName=auto&custom=1&abroad=2"
 PHONE_NUMBER_API_URL = "https://auto.ria.com/users/phones/{car_id}?hash={hash}&expires={expires}"
 
